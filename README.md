@@ -1,27 +1,24 @@
-# Planner
+## Crear el proyecto
+ng new planner
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.6.
+## Agregar Angular Material
+ng add @angular/material
 
-## Development server
+## Extra: fuente roboto y material icons offline
+npm install material-design-icons-iconfont
+npm install roboto-npm-webfont
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Agrega las fuentes primero y luego los iconos
+#### styles.css
+@import '~roboto-npm-webfont/full/style.css';
 
-## Code scaffolding
+$material-design-icons-font-directory-path: '~material-design-icons-iconfont/dist/fonts/';
+@import '~material-design-icons-iconfont/src/material-design-icons';
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## A continuacion seguimos la guia de instalacion de la pagina oficial
+https://storybook.js.org/docs/guides/guide-angular/
 
-## Build
+Notese que esta la forma automatica y la manual. La primera en lo personal siempre me falla.
+Sera por mi mala conexión :(.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Al terminar la configuracion tenedremos Storybook funcionando y una historia de un botón.
