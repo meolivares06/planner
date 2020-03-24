@@ -9,37 +9,41 @@
     npm install roboto-npm-webfont
 
     // Agrega las fuentes primero y luego los iconos
-    #### styles.css
+    File: src/styles.css
     @import '~roboto-npm-webfont/full/style.css';
 
     $material-design-icons-font-directory-path: '~material-design-icons-iconfont/dist/fonts/';
     @import '~material-design-icons-iconfont/src/material-design-icons';
 
-## A continuacion seguimos la guia de instalacion de la pagina oficial
+## A continuación seguimos la guía de instalación de la página oficial
 https://storybook.js.org/docs/guides/guide-angular/
 
 Nótese que están la forma automática y la manual. La primera en lo personal siempre me falla.
 Sera por mi mala conexión :( .
 
-### Al terminar la configuracion tenedremos Storybook funcionando y una historia de un botón.
+### Al terminar la configuración tenedremos Storybook funcionando y una historia de un botón.
 
 
 
 
 
-## Creacion de una historia de usuario con el formato CSF
+## Creación de una historia de usuario con el formato CSF
 CSF (Component Story Format): es la sintaxis recomenda por Storybook a partir de la version 5.2.
 La forma anterior (storiesOf) esta deprecated y se eliminará en futura versiones.
 
 ## Creamos un archivo planner.stories.js que puede estar dentro de nuestro componente (planner).
-    // Necesario para crear el contexto adecuado para nuestro componente.
+    // moduleMetada: Necesario para crear el contexto adecuado para nuestro componente.
     // Su contenido es igual que el del @NgModule
     // Pondremos allí las dependencias de nuestro componente.
     // En este caso con agregar el AppModule tenemos suficiente,
     // ya que AppModule importa a su vez MaterialModule.
 
     import { moduleMetadata } from "@storybook/angular";
+
+    // Todas nuestras dependencias están aquí.
     import { AppModule } from '../app.module'
+
+    // Nuestro componente, al que le haremos la historia
     import { PlannerFormComponent } from "./planner-form.component";
     export default {
         title: "Planner",
@@ -54,9 +58,9 @@ La forma anterior (storiesOf) esta deprecated y se eliminará en futura versione
         component: PlannerFormComponent
     });
 
-## Creamos nuestro modulo Material
+## Creamos nuestro módulo Material
     // Crea una carpeta (material)
-    // Crea el archivo (material.module) con el siguiente contenido:
+    // Crea dentro el archivo (material.module) con el siguiente contenido:
 
     import { NgModule } from '@angular/core';
 
@@ -86,7 +90,29 @@ La forma anterior (storiesOf) esta deprecated y se eliminará en futura versione
     })
     export class MaterialModule {}
 
-En este modulo iremos agregando todos los modulos que son dependencias de los componentes de Angular Material.
+En este módulo iremos agregando todos los módulos que son dependencias de los componentes de Angular Material.
+
+## Importa el nuevo módulo en AppModule:
+    // src/app.module.ts
+    import { MaterialModule } from './material/material.module';
+    @NgModule({
+    declarations: [
+        AppComponent,
+        PlannerFormComponent
+    ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        MaterialModule,
+        // Nota el import de FormsModule y ReactiveFormsModule
+        // necesario para el trabajo con Forms
+        FormsModule,
+        ReactiveFormsModule,
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
+    })
+    export class AppModule { }
 
 
 
